@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "debug",
+            "args": [
+                "--dart-define=BASE_API_URL=https://pokeapi.co",
+                "--dart-define=BASE_IMAGE_URL=https://www.pkparaiso.com/imagenes/pokedex/pokemon/"
+            ],
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Release",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "release",
+            "args": [
+                "--dart-define=BASE_API_URL=https://pokeapi.co",
+                "--dart-define=BASE_IMAGE_URL=https://www.pkparaiso.com/imagenes/pokedex/pokemon/"
+            ],
+            "program": "lib/main.dart"
+        },
+    ]
+}
