@@ -25,7 +25,9 @@ class HomeView extends StatelessWidget {
         pokedexRepository: GetIt.I.get(),
       )..add(loadEvent),
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          elevation: 0,
           title: Assets.images.pokedex.image(
             width: 120,
           ),

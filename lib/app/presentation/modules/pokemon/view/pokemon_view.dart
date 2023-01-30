@@ -11,8 +11,8 @@ class PokemonView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
+    return const Scaffold(
+      backgroundColor: Colors.white,
     );
   }
 }
