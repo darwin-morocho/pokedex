@@ -46,3 +46,5 @@ app.*.map.json
 lib/app/presentation/generated/
 *.freezed.dart
 *.g.dart
+*.mocks.dart
+coverage/

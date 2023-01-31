@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
 import 'result.dart';
@@ -77,10 +76,6 @@ class Http {
         data: responseBody,
       );
     } catch (e, s) {
-      if (kDebugMode) {
-        print(e);
-        print(s);
-      }
       return HttpFailure(
         statusCode,
         data: responseBody,
