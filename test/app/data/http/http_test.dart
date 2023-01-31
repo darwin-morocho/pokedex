@@ -3,15 +3,11 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:pokedex/app/data/http/http.dart';
 import 'package:pokedex/app/data/http/result.dart';
 
-@GenerateMocks(
-  [Client],
-)
-import 'http_test.mocks.dart';
+import '../../../mocks/mocks.mocks.dart';
 
 void main() {
   late MockClient client;
