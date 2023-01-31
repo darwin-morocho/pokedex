@@ -21,24 +21,22 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with RouterMixin {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: MaterialApp.router(
-        routerConfig: router,
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            color: Colors.white,
-            elevation: 0,
-            titleTextStyle: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
-            iconTheme: IconThemeData(
-              color: Colors.black,
-            ),
+    return MaterialApp.router(
+      routerConfig: router,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
-          scaffoldBackgroundColor: Colors.white,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
         ),
+        scaffoldBackgroundColor: Colors.white,
       ),
     );
   }
