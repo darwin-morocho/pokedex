@@ -7,11 +7,13 @@ import '../modules/pokemon/view/pokemon_view.dart';
 import 'routes.dart';
 
 mixin RouterMixin on State<MyApp> {
-  GoRouter get router => _router;
+  GoRouter? _router;
+  GoRouter get router {
+    if (_router != null) {
+      return _router!;
+    }
 
-  final _router = GoRouter(
-    initialLocation: '/',
-    routes: [
+    final routes = [
       GoRoute(
         path: '/',
         name: Routes.home,
@@ -29,6 +31,31 @@ mixin RouterMixin on State<MyApp> {
           );
         },
       ),
-    ],
-  );
+    ];
+
+    /// check if the default routes have been overriden
+    /// This is only for widget testing
+    final overrideRoutes = widget.overrideRoutes;
+    if (overrideRoutes?.isNotEmpty ?? false) {
+      final names = overrideRoutes!.map(
+        (e) => e.name,
+      );
+      routes.removeWhere(
+        (element) {
+          final name = element.name;
+          if (name != null) {
+            return names.contains(name);
+          }
+          return false;
+        },
+      );
+      routes.addAll(overrideRoutes);
+    }
+
+    _router = GoRouter(
+      initialLocation: widget.initialRoute ?? '/',
+      routes: routes,
+    );
+    return _router!;
+  }
 }

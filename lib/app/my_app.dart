@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'presentation/router/router_mixin.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+    this.initialRoute,
+    @visibleForTesting this.overrideRoutes,
+  });
+
+  final String? initialRoute;
+
+  final List<GoRoute>? overrideRoutes;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -13,7 +22,6 @@ class _MyAppState extends State<MyApp> with RouterMixin {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: MaterialApp.router(
         routerConfig: router,
         theme: ThemeData(

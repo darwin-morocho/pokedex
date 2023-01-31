@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:mockito/mockito.dart';
+import 'package:pokedex/app/core/env.dart';
 import 'package:pokedex/app/data/http/http.dart';
 import 'package:pokedex/app/data/repositories_impl/pokedex_repository_impl.dart';
 import 'package:pokedex/app/data/services/remote/pokedex_api.dart';
@@ -24,7 +25,7 @@ void main() {
       repository = PokedexRepositoryImpl(
         PokedexAPI(
           Http(
-            baseUrl: 'https://pokeapi.co',
+            baseUrl: Env.baseApiUrl,
             client: client,
           ),
         ),

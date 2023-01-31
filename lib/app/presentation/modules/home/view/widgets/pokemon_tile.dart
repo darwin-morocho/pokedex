@@ -28,20 +28,6 @@ class PokemonTile extends StatelessWidget {
               getImageUrl(
                 pokemon.id.toString(),
               ),
-              loadStateChanged: (state) {
-                switch (state.extendedImageLoadState) {
-                  case LoadState.loading:
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  case LoadState.completed:
-                    return state.completedWidget;
-                  case LoadState.failed:
-                    return Text(
-                      state.lastException.toString(),
-                    );
-                }
-              },
             ),
           ),
         ),
