@@ -1,0 +1,21 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        generate_for:
+          include:
+            - lib/app/domain/models/**/*
+            - lib/app/domain/inputs/**/*
+            - lib/app/domain/models/*
+            - lib/app/domain/results/**/*
+      freezed:
+        generate_for:
+          include:
+            - lib/app/presentation/**/*_state.dart
+            - lib/app/presentation/**/*_events.dart
+            - lib/app/domain/models/**/*
+            - lib/app/domain/failures/**/*
+            - lib/app/domain/inputs/**/*
+            - lib/app/domain/results/*
+            - lib/app/domain/either/*
+            - lib/app/domain/results/**/*

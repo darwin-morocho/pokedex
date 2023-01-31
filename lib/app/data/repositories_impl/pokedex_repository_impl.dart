@@ -1,8 +1,8 @@
 import '../../domain/either/either.dart';
 import '../../domain/failures/http_request/http_request_failure.dart';
 import '../../domain/models/pokemon/pokemon.dart';
+import '../../domain/models/pokemon_info/pokemon_info.dart';
 import '../../domain/repositories/pokedex_repository.dart';
-import '../../domain/tuple.dart';
 import '../services/remote/pokedex_api.dart';
 import '../utils/perform_http_request.dart';
 
@@ -12,13 +12,14 @@ class PokedexRepositoryImpl implements PokedexRepository {
   PokedexRepositoryImpl(this._api);
 
   @override
-  Future<Either<HttpRequestFailure, Pokemon>> getPokemon(int id) {
-    // TODO: implement getPokemon
-    throw UnimplementedError();
+  Future<Either<HttpRequestFailure, PokemonInfo>> getPokemon(String id) {
+    return performHttpRequest(
+      _api.getPokemonInfo(id),
+    );
   }
 
   @override
-  Future<Either<HttpRequestFailure, List<Tuple<int, String>>>> getPokemons({
+  Future<Either<HttpRequestFailure, List<Pokemon>>> getPokemons({
     required int offset,
     required int limit,
   }) {

@@ -1,27 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../../../../domain/tuple.dart';
+import '../../../../../domain/models/pokemon/pokemon.dart';
 import 'pokemon_tile.dart';
 
-class PokemonsList extends StatefulWidget {
+class PokemonsList extends HookWidget {
   const PokemonsList({super.key, required this.pokemons});
-  final List<Tuple<int, String>> pokemons;
-
-  @override
-  State<PokemonsList> createState() => _PokemonsListState();
-}
-
-class _PokemonsListState extends State<PokemonsList> {
-  final _query = ValueNotifier('');
-
-  @override
-  void dispose() {
-    _query.dispose();
-    super.dispose();
-  }
+  final List<Pokemon> pokemons;
 
   @override
   Widget build(BuildContext context) {
+    final query = useValueNotifier('');
     return Column(
       children: [
         Padding(
@@ -29,7 +18,7 @@ class _PokemonsListState extends State<PokemonsList> {
           child: TextField(
             onChanged: (text) {
               text = text.trim().toLowerCase();
-              _query.value = text;
+              query.value = text;
             },
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.symmetric(
@@ -41,13 +30,13 @@ class _PokemonsListState extends State<PokemonsList> {
         ),
         Expanded(
           child: ValueListenableBuilder(
-            valueListenable: _query,
+            valueListenable: query,
             builder: (_, query, __) {
               final filteredList = query.isEmpty
-                  ? widget.pokemons
-                  : widget.pokemons
+                  ? pokemons
+                  : pokemons
                       .where(
-                        (e) => e.item2.toLowerCase().contains(
+                        (e) => e.name.toLowerCase().contains(
                               query,
                             ),
                       )

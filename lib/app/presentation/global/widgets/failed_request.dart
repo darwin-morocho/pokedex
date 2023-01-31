@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../domain/failures/http_request/http_request_failure.dart';
+import '../../../domain/failures/http_request/http_request_failure.dart';
 
 class FailedRequest extends StatelessWidget {
   const FailedRequest({

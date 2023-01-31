@@ -1,4 +1,5 @@
-import '../../../domain/tuple.dart';
+import '../../../domain/models/pokemon/pokemon.dart';
+import '../../../domain/models/pokemon_info/pokemon_info.dart';
 import '../../http/http.dart';
 import '../../http/result.dart';
 
@@ -7,7 +8,7 @@ class PokedexAPI {
 
   PokedexAPI(this._http);
 
-  Future<HttpResult<List<Tuple<int, String>>>> getPokemons({
+  Future<HttpResult<List<Pokemon>>> getPokemons({
     required int offset,
     required int limit,
   }) {
@@ -20,7 +21,8 @@ class PokedexAPI {
       parser: (_, json) {
         return (json['results'] as List).map(
           (e) {
-            final pathSegments = Uri.parse(e['url']).pathSegments;
+            final url = e['url'] as String;
+            final pathSegments = Uri.parse(url).pathSegments;
 
             final name = e['name'] as String;
 
@@ -29,10 +31,17 @@ class PokedexAPI {
             final id = int.parse(
               pathSegments[pathSegments.length - 2],
             );
-            return Tuple(id, name);
+            return Pokemon(id: id, name: name, url: url);
           },
         ).toList();
       },
+    );
+  }
+
+  Future<HttpResult<PokemonInfo>> getPokemonInfo(String id) {
+    return _http.request(
+      '/api/v2/pokemon/$id',
+      parser: (_, json) => PokemonInfo.fromJson(json),
     );
   }
 }

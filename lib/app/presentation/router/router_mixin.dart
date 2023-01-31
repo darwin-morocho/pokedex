@@ -23,11 +23,9 @@ mixin RouterMixin on State<MyApp> {
         builder: (_, state) {
           final id = state.params['id'] as String;
           assert(id.isNotEmpty);
-          final imageUrlPreview = state.extra as String?;
 
           return PokemonView(
             id: id,
-            imageUrlPreview: imageUrlPreview,
           );
         },
       ),

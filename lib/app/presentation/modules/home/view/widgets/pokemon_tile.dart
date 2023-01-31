@@ -2,13 +2,13 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../domain/tuple.dart';
+import '../../../../../domain/models/pokemon/pokemon.dart';
 import '../../../../router/routes.dart';
 import '../../../../utils/get_image_url.dart';
 
 class PokemonTile extends StatelessWidget {
   const PokemonTile({super.key, required this.pokemon});
-  final Tuple<int, String> pokemon;
+  final Pokemon pokemon;
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,13 @@ class PokemonTile extends StatelessWidget {
               context.pushNamed(
                 Routes.pokemon,
                 params: {
-                  'id': pokemon.item1.toString(),
+                  'id': pokemon.id.toString(),
                 },
-                extra: pokemon.item2,
               );
             },
             child: ExtendedImage.network(
               getImageUrl(
-                pokemon.item1.toString(),
+                pokemon.id.toString(),
               ),
               loadStateChanged: (state) {
                 switch (state.extendedImageLoadState) {
@@ -46,7 +45,7 @@ class PokemonTile extends StatelessWidget {
             ),
           ),
         ),
-        Text(pokemon.item2),
+        Text(pokemon.name),
       ],
     );
   }
