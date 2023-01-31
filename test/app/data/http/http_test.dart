@@ -88,8 +88,8 @@ void main() {
         'api/v2/pokemon',
       );
       expect(
-        result,
-        isA<HttpFailure>(),
+        (result as HttpFailure).exception,
+        isA<SocketException>(),
       );
     },
   );
@@ -114,8 +114,8 @@ void main() {
         'api/v2/pokemon',
       );
       expect(
-        result,
-        isA<HttpFailure>(),
+        result.statusCode,
+        400,
       );
     },
   );
